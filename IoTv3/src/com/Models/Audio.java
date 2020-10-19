@@ -83,8 +83,15 @@ public class Audio {
 		if (this.ID > 0) {
 			parameters.put("ID", this.ID);
 		}
+		
 		parameters.put("duration", this.duration);
 		parameters.put("decibelamplitude", this.decibelamplitude);
+		parameters.put("frequency", this.frequency);
+		
+		if (this.createdAt != null) {
+			parameters.put("timestamp", this.createdAt);
+		}
+		
 		
 		return parameters;
 	}

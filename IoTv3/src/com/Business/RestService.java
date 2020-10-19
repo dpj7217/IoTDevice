@@ -3,7 +3,9 @@ package com.Business;
 import java.util.List;
 
 import javax.sql.DataSource;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
@@ -33,5 +35,14 @@ public class RestService {
 		} 
 		
 		return Response.ok().entity(audios).build();
+	}
+	
+	@POST
+	@Path("/addAudio")
+	@Consumes("application/json")
+	public void addAudio(Audio a) {
+		DAO data = new DAO();
+		
+		data.postAudio(a);
 	}
 }

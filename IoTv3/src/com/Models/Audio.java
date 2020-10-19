@@ -1,11 +1,13 @@
 package com.Models;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Audio {
 	private int ID = -1;
 	private double duration;
-    private double amplitude;
+    private double decibelamplitude;
     private int frequency;
     private Timestamp createdAt = null;
     
@@ -30,7 +32,7 @@ public class Audio {
     }
 
     public double getAmplitude() {
-        return this.amplitude;
+        return this.decibelamplitude;
     }
 
     public int getFrequency() {
@@ -42,8 +44,8 @@ public class Audio {
         this.duration = newDuration;
     }
 
-    public void setAmplitude(double newAmplitude) {
-        this.amplitude = newAmplitude;
+    public void setDecibelAmplitude(double newAmplitude) {
+        this.decibelamplitude = newAmplitude;
     }
 
     public void setFrequency(int newFrequency) {
@@ -52,25 +54,38 @@ public class Audio {
 
     public Audio(double Duration, double Amplitude, int Frequency) {
     	this.duration = Duration;
-    	this.amplitude = Amplitude;
+    	this.decibelamplitude = Amplitude;
     	this.frequency = Frequency;
     }
 
     public Audio(int ID, double Duration, double Amplitude, int Frequency, Timestamp createdAt) {
     	this.ID = ID;
         this.duration = Duration;
-        this.amplitude = Amplitude;
+        this.decibelamplitude = Amplitude;
         this.frequency = Frequency;
         this.createdAt = createdAt;
     }
     
     public Audio() {
     	this.duration = 0;
-    	this.amplitude = 0;
+    	this.decibelamplitude = 0;
     	this.frequency = 0;
     }
 
     public String generateInsertSQL() {
-        return "INSERT INTO sounds (duration, decibelamplitude, frequency) VALUES " + this.duration + ", " + this.amplitude + ", " + this.frequency + ";";
+        return "INSERT INTO sounds (duration, decibelamplitude, frequency) VALUES " + this.duration + ", " + this.decibelamplitude + ", " + this.frequency + ";";
     }
+    
+    
+	public Map<String, Object> getParametersMap() {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		
+		if (this.ID > 0) {
+			parameters.put("ID", this.ID);
+		}
+		parameters.put("duration", this.duration);
+		parameters.put("decibelamplitude", this.decibelamplitude);
+		
+		return parameters;
+	}
 }

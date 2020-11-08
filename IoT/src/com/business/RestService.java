@@ -3,12 +3,14 @@ package com.business;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.data.Audio;
 
-@Controller
+@RestController
 public class RestService {
     
 	/*
@@ -31,7 +33,7 @@ public class RestService {
 	 * Request Mapped to /IoT/insert page for actually inserting into database
 	 * 
 	 */
-	@RequestMapping(value="/insert", method=RequestMethod.GET)
+	@GetMapping("/insert")
     public void insert() {
 		System.out.println("Init insert()");
         while(true) {

@@ -5,10 +5,12 @@ import java.sql.*;
 
 public class DAO {
 
-    public void Insert(Audio a)  {
+    public void Insert(Audio a) throws ClassNotFoundException  {
 
         try {
 
+        	Class.forName("com.mysql.jdbc.Driver");
+        	
         	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
             Statement stmt = conn.createStatement();
 

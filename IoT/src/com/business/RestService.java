@@ -17,7 +17,7 @@ public class RestService {
 	 * Private Helper function to generate random audio and add it to db
 	 * 
 	 */
-	private Audio AddAudio() {
+	private Audio AddAudio() throws ClassNotFoundException {
         double randDuration = Math.random() * (9.99 - 1.00) + 1.00;
         double randAmplitude = Math.random() * (99.99 - 10.00) + 10.00;
         double randFrequency = Math.random() * (99999999.99 - 10000000.00) + 10000000.00;
@@ -34,7 +34,7 @@ public class RestService {
 	 * 
 	 */
 	@GetMapping("/insert")
-    public void insert() {
+    public void insert() throws ClassNotFoundException {
 		System.out.println("Init insert()");
         while(true) {
             Audio a = AddAudio();

@@ -96,7 +96,7 @@ public class Audio {
         return parameters;
     }
 
-    public void insert() {
+    public void insert() throws ClassNotFoundException {
         DAO dao = new DAO();
 
         dao.Insert(this);
